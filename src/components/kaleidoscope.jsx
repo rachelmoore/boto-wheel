@@ -259,16 +259,6 @@ export default function Kaleidoscope() {
 
     return (
         <>
-        <audio 
-            ref={audioRef}
-            src={OrinocoFlowMario64} 
-            autoPlay 
-            loop 
-            controls 
-            muted={false}
-            preload="auto"
-            onError={(e) => console.log('Audio autoplay blocked:', e)}
-        />
         <div 
             ref={canvasRef} 
             {...{ 'tlg-kaleidoscope-scale': '1' }}
@@ -279,8 +269,8 @@ export default function Kaleidoscope() {
             className="kaleidoscope_canvas" 
             style={{
                 position: 'relative',
-                width: '80%',
-                height: '80%',
+                width: '100%',
+                height: '100%',
                 border: '2px solid #ccc'
             }}
         >
