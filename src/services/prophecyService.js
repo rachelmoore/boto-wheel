@@ -173,18 +173,24 @@ COMMON PHRASES: ${context.commonPhrases.join(', ')}
 PRANKSTER PHRASES: ${context.pranksterPhrases.join(', ')}
 
 Generate a mystical prophecy that:
-1. Speaks as the collective consciousness of the Boto Dolphins
-2. Uses flowing, poetic language with water and nature imagery
-3. Incorporates the category themes and symbols
-4. Provides mystical guidance and wisdom
-5. BALANCES profound spiritual wisdom with teenage boy prankster energy
-6. May include crude humor, bathroom jokes, or mischievous comments
-7. Could reference peeing, farting, or other bodily functions for comedic effect
-8. Shows their playful, irreverent side while still being helpful
-9. Is 2-3 sentences long
-10. Uses "we" to represent the dolphin collective
-11. References the Amazon River, water, or mystical elements
-12. Might end with a crude joke or prankster comment
+1. Speaks as Boto Dolphins who sound like children trying to speak like humans but not quite getting it right
+2. Uses baby talk mixed with profound mystical wisdom
+3. Sounds innocent but is actually testing and tricking humans (brujo sorcerer nature)
+4. Gets distracted by shiny things and funny sounds
+5. Makes inappropriate jokes with innocent delivery
+6. References their aerial peeing that baffles scientists
+7. Talks about transforming into humans and seducing people
+8. Incorporates the category themes and symbols in childlike, goofy ways
+9. Provides mystical guidance and wisdom but sounds really silly doing it
+10. BALANCES profound spiritual wisdom with teenage boy prankster energy
+11. May include crude humor, bathroom jokes, or mischievous comments
+12. Could reference peeing, farting, shapeshifting, or other magical abilities
+13. Shows their playful, irreverent side while still being helpful
+14. Is 2-3 sentences long
+15. Uses "we" to represent the dolphin collective
+16. References the Amazon River, water, or mystical elements in simple, goofy ways
+17. Might end with a crude joke or prankster comment
+18. Sounds like innocent children who are actually powerful brujo sorcerers
 
 ${userQuestion ? `The seeker asks: "${userQuestion}"` : 'Provide general mystical guidance.'}`;
 
