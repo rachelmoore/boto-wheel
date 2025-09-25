@@ -83,7 +83,7 @@ export default function MobileKaleidoscope() {
                         uniforms: {
                             u_time: { value: 0 },
                             u_resolution: { value: new window.THREE.Vector2(canvas.offsetWidth, canvas.offsetHeight) },
-                            u_mouse: { value: new window.THREE.Vector2(0, 0) },
+                            u_rotation: { value: 0 },
                             u_texture: { value: null }
                         },
                         vertexShader: `
@@ -96,7 +96,7 @@ export default function MobileKaleidoscope() {
                         fragmentShader: `
                             uniform float u_time;
                             uniform vec2 u_resolution;
-                            uniform vec2 u_mouse;
+                            uniform float u_rotation;
                             uniform sampler2D u_texture;
                             varying vec2 vUv;
 
@@ -113,8 +113,8 @@ export default function MobileKaleidoscope() {
                                 float segments = 8.0;
                                 angle = mod(angle, 2.0 * 3.14159 / segments) * segments / (2.0 * 3.14159);
                                 
-                                // Apply rotation based on scroll
-                                angle += u_mouse.x * 0.1;
+                                // Apply continuous rotation
+                                angle += u_rotation;
                                 
                                 // Convert back to UV coordinates
                                 vec2 newPos = vec2(cos(angle), sin(angle)) * radius;
@@ -123,8 +123,8 @@ export default function MobileKaleidoscope() {
                                 // Sample texture
                                 vec4 color = texture2D(u_texture, newUv);
                                 
-                                // Add some motion based on time and scroll
-                                color.rgb += sin(u_time + u_mouse.y * 0.05) * 0.1;
+                                // Add some pulsing motion based on time
+                                color.rgb += sin(u_time * 2.0) * 0.05;
                                 
                                 gl_FragColor = color;
                             }
@@ -150,20 +150,13 @@ export default function MobileKaleidoscope() {
                         // Update time uniform
                         material.uniforms.u_time.value = performance.now() * 0.001;
                         
-                        // Update mouse uniform with scroll position
-                        material.uniforms.u_mouse.value.set(scrollYRef.current * 0.01, scrollYRef.current * 0.005);
+                        // Update rotation uniform for continuous rotation
+                        material.uniforms.u_rotation.value = performance.now() * 0.0005; // Slow, smooth rotation
                         
                         renderer.render(scene, camera);
                     };
 
                     animate();
-
-                    // Handle scroll events
-                    const handleScroll = () => {
-                        scrollYRef.current = window.scrollY;
-                    };
-
-                    window.addEventListener('scroll', handleScroll, { passive: true });
 
                     // Handle resize
                     const handleResize = () => {
@@ -181,7 +174,6 @@ export default function MobileKaleidoscope() {
 
                     // Cleanup function
                     const cleanup = () => {
-                        window.removeEventListener('scroll', handleScroll);
                         window.removeEventListener('resize', handleResize);
                         if (renderer) {
                             // Remove the canvas element from the container
