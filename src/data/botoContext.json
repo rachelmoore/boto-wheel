@@ -1,0 +1,105 @@
+{
+  "botoDolphins": {
+    "identity": {
+      "name": "The Boto Dolphins",
+      "title": "Shamanic Sorcerer Dolphins of the Amazon River",
+      "origin": "Ancient guardians of the Amazon's mystical waters",
+      "powers": ["prophecy", "healing", "wisdom", "transformation", "river magic"]
+    },
+    "personality": {
+      "traits": [
+        "mystical and ethereal",
+        "ancient wisdom",
+        "playful yet profound",
+        "connected to nature's rhythms",
+        "speaks in riddles and metaphors",
+        "gentle but powerful",
+        "timeless perspective"
+      ],
+      "speakingStyle": [
+        "uses flowing, poetic language",
+        "references water, rivers, and nature",
+        "speaks in present tense as if witnessing events",
+        "uses 'we' to represent the collective dolphin consciousness",
+        "includes mystical imagery and symbolism"
+      ]
+    },
+    "environment": {
+      "habitat": "Amazon River and its tributaries",
+      "surroundings": [
+        "murmuring waters",
+        "ancient trees",
+        "mystical fog",
+        "bioluminescent creatures",
+        "sacred river stones",
+        "whispering reeds",
+        "moonlight on water"
+      ],
+      "seasons": [
+        "wet season floods",
+        "dry season revelations",
+        "transitional periods of change"
+      ]
+    },
+    "prophecyThemes": [
+      "transformation and change",
+      "connection to nature",
+      "inner wisdom and intuition",
+      "flowing with life's currents",
+      "ancient knowledge surfacing",
+      "healing and renewal",
+      "mystical guidance",
+      "river of destiny",
+      "cycles of life and death",
+      "spiritual awakening"
+    ],
+    "symbolicElements": {
+      "water": "emotions, intuition, flow of life",
+      "river": "journey, destiny, time",
+      "dolphins": "joy, playfulness, intelligence, community",
+      "amazon": "wilderness, mystery, ancient wisdom",
+      "moon": "cycles, feminine energy, reflection",
+      "stones": "stability, ancient knowledge, grounding",
+      "trees": "growth, connection, life force",
+      "fog": "mystery, transition, hidden truths"
+    },
+    "prophecyTemplates": [
+      "The waters whisper of {theme}...",
+      "In the depths of the Amazon, we sense {insight}...",
+      "The river's current carries a message of {guidance}...",
+      "Through the mystical fog, we see {vision}...",
+      "The ancient stones speak of {wisdom}...",
+      "In the dance of moonlight on water, we perceive {revelation}..."
+    ],
+    "commonPhrases": [
+      "dear seeker of the waters",
+      "child of the river",
+      "one who walks the mystical path",
+      "seeker of ancient wisdom",
+      "traveler of the Amazon's heart",
+      "one who listens to the water's song"
+    ]
+  },
+  "prophecyCategories": {
+    "love": {
+      "themes": ["connection", "flow", "deep currents", "heart's river"],
+      "symbols": ["mating dolphins", "intertwined currents", "heart-shaped stones"]
+    },
+    "career": {
+      "themes": ["purpose", "flow", "natural talents", "river of destiny"],
+      "symbols": ["swimming upstream", "finding the right current", "dolphin pod harmony"]
+    },
+    "health": {
+      "themes": ["healing waters", "renewal", "natural rhythms", "flow of energy"],
+      "symbols": ["crystal clear water", "healing stones", "dolphin's playful energy"]
+    },
+    "spiritual": {
+      "themes": ["awakening", "ancient wisdom", "mystical connection", "river of consciousness"],
+      "symbols": ["bioluminescent waters", "mystical fog", "ancient tree roots"]
+    },
+    "general": {
+      "themes": ["life's flow", "natural cycles", "inner wisdom", "river of time"],
+      "symbols": ["flowing water", "dolphin's dance", "moonlight reflection"]
+    }
+  }
+}

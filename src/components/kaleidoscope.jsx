@@ -1,16 +1,41 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Heading,
   Image,
   Flex
 } from '@chakra-ui/react';
 import boto1 from '../assets/images/boto1.png';
+import boto2 from '../assets/images/boto2.png';
+import boto3 from '../assets/images/boto3.png';
+import boto4 from '../assets/images/boto4.png';
+import boto5 from '../assets/images/boto5.png';
+import bototransparentbg from '../assets/images/bototransparentbg.png';
+import OrinocoFlowMario64 from '../assets/audio/OrinocoFlowMario64.mp3';
+import OrinocoFlowPrototypeRaptor from '../assets/audio/OrinocoFlowPrototypeRaptor.mp3';
+
+// Array of all boto images for random selection
+const botoImages = [boto1, boto2, boto3, boto4, boto5];
 
 export default function Kaleidoscope() {
     const canvasRef = useRef(null);
     const imageRef = useRef(null);
+    const audioRef = useRef(null);
+    
+    // Randomly select one of the boto images
+    const [selectedImage] = useState(() => {
+        const randomIndex = Math.floor(Math.random() * botoImages.length);
+        const selected = botoImages[randomIndex];
+        console.log(`Randomly selected boto image: ${selected}`);
+        return selected;
+    });
 
     useEffect(() => {
+        // Check if already initialized to prevent duplicate execution
+        if (window.kaleidoscopeInitialized) {
+            console.log('Kaleidoscope already initialized globally, skipping effect...');
+            return;
+        }
+
         // Wait for scripts to load before setting attributes
         const checkScripts = () => {
             if (window.THREE) {
@@ -37,7 +62,16 @@ export default function Kaleidoscope() {
                             const container = canvasRef.current;
                             const imageElement = imageRef.current;
                             
+                            // Check if kaleidoscope is already initialized
+                            if (window.kaleidoscopeInitialized) {
+                                console.log('Kaleidoscope already initialized, skipping...');
+                                return;
+                            }
+                            
                             console.log('Creating kaleidoscope manually...');
+                            
+                            // Mark as initialized immediately to prevent duplicate initialization
+                            window.kaleidoscopeInitialized = true;
                             
                             // Create the scene
                             const scene = new THREE.Scene();
@@ -195,7 +229,46 @@ export default function Kaleidoscope() {
         checkScripts();
     }, []);
 
+    // Handle audio autoplay with user interaction
+    useEffect(() => {
+        const handleUserInteraction = () => {
+            if (audioRef.current) {
+                audioRef.current.play().catch(error => {
+                    console.log('Autoplay failed, user interaction required:', error);
+                });
+            }
+        };
+
+        // Try to play immediately
+        if (audioRef.current) {
+            audioRef.current.play().catch(error => {
+                console.log('Initial autoplay blocked, waiting for user interaction');
+                // Add event listeners for user interaction
+                document.addEventListener('click', handleUserInteraction, { once: true });
+                document.addEventListener('touchstart', handleUserInteraction, { once: true });
+                document.addEventListener('keydown', handleUserInteraction, { once: true });
+            });
+        }
+
+        return () => {
+            document.removeEventListener('click', handleUserInteraction);
+            document.removeEventListener('touchstart', handleUserInteraction);
+            document.removeEventListener('keydown', handleUserInteraction);
+        };
+    }, []);
+
     return (
+        <>
+        <audio 
+            ref={audioRef}
+            src={OrinocoFlowMario64} 
+            autoPlay 
+            loop 
+            controls 
+            muted={false}
+            preload="auto"
+            onError={(e) => console.log('Audio autoplay blocked:', e)}
+        />
         <div 
             ref={canvasRef} 
             {...{ 'tlg-kaleidoscope-scale': '1' }}
@@ -206,19 +279,35 @@ export default function Kaleidoscope() {
             className="kaleidoscope_canvas" 
             style={{
                 position: 'relative',
-                width: '100%',
-                height: '400px',
+                width: '80%',
+                height: '80%',
                 border: '2px solid #ccc'
             }}
         >
             <img 
                 ref={imageRef} 
-                src={boto1} 
+                src={selectedImage} 
                 className="hide" 
                 alt="tlg-kaleidoscope-image" 
                 {...{ 'tlg-kaleidoscope-image': true }}
                 style={{ display: 'none' }}
             />
+            {/* Transparent boto overlay in the center */}
+            <img 
+                src={bototransparentbg} 
+                alt="boto overlay" 
+                style={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    width: '280px',
+                    height: '280px',
+                    zIndex: 10,
+                    pointerEvents: 'none'
+                }}
+            />
         </div>
+        </>
     )
 }
