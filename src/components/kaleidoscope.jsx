@@ -30,6 +30,7 @@ export default function Kaleidoscope() {
     });
 
     useEffect(() => {
+        console.log('Desktop Kaleidoscope useEffect running, kaleidoscopeInitialized:', window.kaleidoscopeInitialized);
         // Check if already initialized to prevent duplicate execution
         if (window.kaleidoscopeInitialized) {
             console.log('Kaleidoscope already initialized globally, skipping effect...');
@@ -61,6 +62,12 @@ export default function Kaleidoscope() {
                             // We'll recreate the Sketch class functionality here
                             const container = canvasRef.current;
                             const imageElement = imageRef.current;
+                            
+                            // Check if elements exist
+                            if (!container || !imageElement) {
+                                console.log('Container or image element not ready yet, skipping...');
+                                return;
+                            }
                             
                             // Check if kaleidoscope is already initialized
                             if (window.kaleidoscopeInitialized) {
@@ -227,6 +234,11 @@ export default function Kaleidoscope() {
         };
         
         checkScripts();
+        
+        return () => {
+            // Reset the desktop kaleidoscope flag
+            window.kaleidoscopeInitialized = false;
+        };
     }, []);
 
     // Handle audio autoplay with user interaction
